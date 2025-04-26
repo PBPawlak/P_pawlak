@@ -1,6 +1,13 @@
 import streamlit as st
 import random
 import time
+from openai import OpenAI
+
+st.secrets["API_KEY", "BASE_URL"]
+client = OpenAI(
+  base_url=BASE_URL,
+  api_key = API_KEY,
+)
 
 st.write("Streamlit loves LLMs! 🤖 [Build your own chat app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) in minutes, then make it powerful by adding images, dataframes, or even input widgets to the chat.")
 
@@ -27,13 +34,8 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         full_response = ""
-        assistant_response = random.choice(
-            [
-                "Hello there! How can I assist you today?",
-                "Hi, human! Is there anything I can help you with?",
-                "Do you need help?",
-            ]
-        )
+        assistant_response = client.chat.completions(model=st.secrets["MODEL"], message=st.session_state.messages)
+        
         # Simulate stream of response with milliseconds delay
         for chunk in assistant_response.split():
             full_response += chunk + " "
