@@ -3,10 +3,10 @@ import random
 import time
 from openai import OpenAI
 
-st.secrets["API_KEY", "BASE_URL"]
+
 client = OpenAI(
-  base_url=BASE_URL,
-  api_key = API_KEY,
+  base_url=st.secrets["BASE_URL"],
+  api_key = st.secrets["API_KEY"],
 )
 
 st.write("Streamlit loves LLMs! 🤖 [Build your own chat app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) in minutes, then make it powerful by adding images, dataframes, or even input widgets to the chat.")
