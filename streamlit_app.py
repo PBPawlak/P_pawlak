@@ -35,7 +35,8 @@ if prompt := st.chat_input("What is up?"):
         message_placeholder = st.empty()
         full_response = ""
         assistant_response = client.chat.completions.create(model=st.secrets["MODEL"], messages=st.session_state.messages)
-        
+        assistant_response.output_text
+
         # Simulate stream of response with milliseconds delay
         # for chunk in assistant_response.split():
         #     full_response += chunk + " "
@@ -46,4 +47,4 @@ if prompt := st.chat_input("What is up?"):
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-st.write(st.secrets["MODEL"])
+# st.write(st.secrets["MODEL"])
