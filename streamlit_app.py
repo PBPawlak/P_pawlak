@@ -9,7 +9,7 @@ from chat_openrouter import ChatOpenRouter
 
 
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
-selected_model = "meta-llama/llama-3.2-1b-instruct:free"
+selected_model = "google/gemma-3-12b-it:free"
 model = ChatOpenRouter(model_name=selected_model)
 
 UPLOAD_FOLDER = "uploads/docs"
