@@ -28,7 +28,7 @@ Answer:
 
 if uploaded_files:
     for uploaded_file in uploaded_files:
-        file_path = os.path.join(UPLOAD_FOLDER, uploaded_files.name)
+        file_path = os.path.join(UPLOAD_FOLDER, uploaded_file.name)
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
     st.write("Files uploaded sucessfully!")
