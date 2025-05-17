@@ -1,6 +1,6 @@
-openai
+
 streamlit
 pdfplumber
-faiss
+faiss-cpu
 langchain_huggingface
-fitz
+PyMuPDF
