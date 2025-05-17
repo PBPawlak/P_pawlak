@@ -5,6 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 import docloader as d
 import chat_openrouter as co
 import embedder as e
+import fitz
 
 
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
@@ -18,11 +19,15 @@ st.write("OpenRouter chatbot app by Piotr Pawlak")
 ###### PDF ######
 def extract_data(feed):
     data = []
-    with pdfplumber.open(feed) as pdf:
-        pages = pdf.pages
-        for p in pages:
-            data.append(p.extract_tables())
-    return None
+    with fitz.open(feed) as doc:
+        for page in doc:
+            text = page.get_text("text") 
+            lines = text.split('\n')
+            for line in lines:
+                row = [cell for cell in line.strip().split() if cell]
+                if len(row) > 1:
+                    data.append(row)
+    return data
 
 uploaded_files = st.file_uploader("Choose your pdf file", type="pdf", accept_multiple_files=True)
 if uploaded_files is not None:
