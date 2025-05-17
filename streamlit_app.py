@@ -69,6 +69,7 @@ if prompt := st.chat_input("What is up?"):
         full_response = ""
         # related_docs = e.retrieve_docs(prompt, st.session_state.faiss_index)
         # assistant_response = answer_question(prompt, related_docs, selected_model)
+        st.write(model)
         assistant_response = selected_model.invoke(prompt)
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": assistant_response.content})
