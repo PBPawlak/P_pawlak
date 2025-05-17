@@ -2,7 +2,6 @@ import streamlit as st
 import os
 from langchain_core.prompts import ChatPromptTemplate
 import docloader as d
-import chat_openrouter as co
 import embedder as e
 from chat_openrouter import ChatOpenRouter
 
@@ -70,7 +69,7 @@ if prompt := st.chat_input("What is up?"):
         # related_docs = e.retrieve_docs(prompt, st.session_state.faiss_index)
         # assistant_response = answer_question(prompt, related_docs, selected_model)
         st.write(model)
-        assistant_response = selected_model.invoke(prompt)
+        assistant_response = model.invoke(prompt)
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": assistant_response.content})
     st.chat_message("system").write(assistant_response.content)
