@@ -13,26 +13,11 @@ selected_model = "meta-llama/llama-3.2-1b-instruct:free"
 model = co.ChatOpenRouter(model_name=selected_model)
 
 UPLOAD_FOLDER = "/uploads/docs"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 st.write("OpenRouter chatbot app by Piotr Pawlak")
 
-###### PDF ######
-def extract_data(feed):
-    data = []
-    with fitz.open(feed) as doc:
-        for page in doc:
-            text = page.get_text("text") 
-            lines = text.split('\n')
-            for line in lines:
-                row = [cell for cell in line.strip().split() if cell]
-                if len(row) > 1:
-                    data.append(row)
-    return data
-
 uploaded_files = st.file_uploader("Choose your pdf file", type="pdf", accept_multiple_files=True)
-if uploaded_files is not None:
-    df = extract_data(uploaded_files)
-###### PDF ######
 
 template = """
 You are an intelligent assistant for question-answering tasks. Use Polish language by default. Use the following context for answers
