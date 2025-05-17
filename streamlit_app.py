@@ -2,6 +2,9 @@ import streamlit as st
 import random
 import time
 from openai import OpenAI
+import pandas
+from io import StringIO
+import pdfplumber
 
 
 client = OpenAI(
@@ -12,6 +15,18 @@ client = OpenAI(
 st.write("Streamlit loves LLMs! 🤖 [Build your own chat app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) in minutes, then make it powerful by adding images, dataframes, or even input widgets to the chat.")
 
 st.caption("Note that this demo app isn't actually connected to any LLMs. Those are expensive ;)")
+
+def extract_data(feed):
+    data = []
+    with pdfplumber.load(feed) as pdf:
+        pages = pdf.pages
+        for p in pages:
+            data.append(p.extract_tables())
+    return None
+
+uploaded_file = st.file_uploader("Choose your pdf file", type="pdf")
+if uploaded_file is not None:
+    df = extract_data(uploaded_file)
 
 # Initialize chat history
 if "messages" not in st.session_state:
