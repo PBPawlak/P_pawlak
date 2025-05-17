@@ -11,7 +11,7 @@ api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
 selected_model = "meta-llama/llama-3.2-1b-instruct:free"
 model = co.ChatOpenRouter(model_name=selected_model)
 
-UPLOAD_FOLDER = "/uploads/docs"
+UPLOAD_FOLDER = "uploads/docs"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 st.write("OpenRouter chatbot app by Piotr Pawlak")
