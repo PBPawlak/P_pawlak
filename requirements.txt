@@ -6,3 +6,4 @@ langchain_huggingface
 PyMuPDF
 langchain_openai
 langchain_core
+os

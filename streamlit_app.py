@@ -1,11 +1,10 @@
 import streamlit as st
 import os
-import pdfplumber
 from langchain_core.prompts import ChatPromptTemplate
 import docloader as d
 import chat_openrouter as co
 import embedder as e
-import fitz
+
 
 
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
