@@ -1,3 +1,6 @@
 openai
 streamlit
 pdfplumber
+faiss
+langchain_huggingface
+fitz
